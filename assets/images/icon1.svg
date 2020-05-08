@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="95" height="75" viewBox="0 0 95 75">
+    <defs>
+        <filter id="prefix__a" width="220%" height="340%" x="-60%" y="-120%" filterUnits="objectBoundingBox">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(22)">
+        <rect width="50" height="25" x=".5" y="25" fill="#7752BE" filter="url(#prefix__a)" opacity=".848" rx="12.5"/>
+        <rect width="50" height="50" fill="#7752BE" rx="19"/>
+        <path fill="#FFF" fill-rule="nonzero" d="M23.007 15h-7.302c-.39 0-.705.316-.705.705v7.302c0 .39.316.706.705.706h7.302c.39 0 .706-.316.706-.706v-7.302c0-.39-.317-.705-.706-.705zm11.288 0h-7.302c-.39 0-.706.316-.706.705v7.302c0 .39.316.706.706.706h7.302c.39 0 .705-.316.705-.706v-7.302c0-.39-.316-.705-.705-.705zM23.007 26.287h-7.302c-.39 0-.705.316-.705.706v7.302c0 .39.316.705.705.705h7.302c.39 0 .706-.316.706-.705v-7.302c0-.39-.317-.706-.706-.706zm11.288 0h-7.302c-.39 0-.706.316-.706.706v7.302c0 .39.316.705.706.705h7.302c.39 0 .705-.316.705-.705v-7.302c0-.39-.316-.706-.705-.706z"/>
+    </g>
+</svg>

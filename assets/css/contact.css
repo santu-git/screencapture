@@ -1,0 +1,61 @@
+textarea {
+  resize: none;
+ }
+
+ ::placeholder {
+      color: #222222 !important;
+      size: 14px !important;
+  }
+
+.form-control{
+  padding: 15px;
+}
+.feedback{
+  height: 48px;
+  border-radius: 4px;
+  background-image: linear-gradient(94deg, #ffb48a, #ec6b69);
+  border: unset;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.contact-sec{
+  padding: 30px;
+  object-fit: contain;
+  box-shadow: 0 3px 29px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.contact-head{
+  color: #222222;
+  font-size: 36px;
+  font-weight: bold;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+ #contact-form{
+   padding: 0 20px;
+ }
+
+.contact-para{
+  font-size: 16px;
+  line-height: 1.81;
+  padding: 10px;
+  color: #222222;
+
+}
+
+.feedback-head{
+  font-size: 20px;
+  font-weight: bold;
+  color: #222222;
+  padding-left: 40px;
+}
+
+.feedback-link{
+  padding-left: 48px;
+}
+.link{
+  font-size: 18px;
+}
