@@ -16,38 +16,38 @@
       <button id="close-capture-window" style="float:right">Close</button>\
       <h4 style="padding:5px;text-align:center;margin-bottom:20px;">Create Ticket for Application </h4>\
       <div style="display:inline-flex;"> \
-        <div style="padding:10px;width: 500">\
+        <div style="padding:10px;width: 600">\
           <p>Captured</p>\
           <div class="row">\
-            <div class="cropped-img col-6 mb-2" style="height:150px;overflow:hidden;">\
+            <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-1" src="" style="width:100%;object-fit:cover"/>\
+              <img id="img-1" src="" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="cropped-img col-6 mb-2" style="height:150px;overflow:hidden;">\
+            <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-2" src="" style="width:100%;object-fit:cover"/>\
+              <img id="img-2" src="" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="cropped-img col-6 mb-2" style="height:150px;overflow:hidden;">\
+            <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-3" src="" style="width:100%;object-fit:cover"/>\
+              <img id="img-3" src="" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="cropped-img col-6 mb-2" style="height:150px;overflow:hidden;">\
+            <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-4" src="" style="width:100%;object-fit:cover"/>\
+              <img id="img-4" src="" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="cropped-img col-6 mb-2" style="height:150px;overflow:hidden;">\
+            <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-5" src="" style="width:100%;object-fit:cover"/>\
+              <img id="img-5" src="" style="height:100%;object-fit:contain"/>\
             </div>\
           </div>\
         </div>\
@@ -80,8 +80,28 @@
       $("#formDialog").css("display", "none");
     });
   });
-
+  function pushImage(img) {
+    var capturedImages = JSON.parse(localStorage.getItem("captured"));
+    if (capturedImages === null) {
+      capturedImages = [img];
+    } else {
+      if (capturedImages.length == 5) {
+        capturedImages.pop();
+      }
+      capturedImages.unshift(img);
+    }
+    localStorage.setItem("captured", JSON.stringify(capturedImages));
+  }
+  function renderFromLocalstorage() {
+    var capturedImages = JSON.parse(localStorage.getItem("captured"));
+    if (capturedImages) {
+      capturedImages.forEach((data, idx) => {
+        $("#img-" + (idx + 1)).attr("src", data);
+      });
+    }
+  }
   function captureScreen() {
+    renderFromLocalstorage();
     html2canvas(document.body).then(function (canvas) {
       var canvasUrl = canvas.toDataURL();
       $("#formDialog").css("display", "flex");
@@ -121,8 +141,9 @@
         ctx1.fill();
         ctx1.putImageData(imageData, 0, 0);
         var croppedImage = canvas1.toDataURL();
-        console.log(croppedImage);
-        $("#img-1").attr("src", croppedImage);
+        //$("#img-1").attr("src", croppedImage);
+        pushImage(croppedImage);
+        renderFromLocalstorage();
       }
     });
   }
