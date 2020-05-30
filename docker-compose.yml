@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    image: screenshot:latest
+    build: .
+    volumes:
+      - screeenshot_vol:/usr/share/nginx/html/
+    ports:
+      - "80:80"
+volumes:
+  screeenshot_vol: 
