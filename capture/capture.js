@@ -11,50 +11,54 @@
   var jcrop_api;
   var modal =
     '\
-  <div id="formDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
+  <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
     <div style="margin:auto;border: 1px solid black;padding: 10px;background-color: #e9e9e9;">\
-      <button id="close-capture-window" style="float:right">Close</button>\
+      <button class="close-capture-window" style="float:right" class="btn btn-danger">Close</button>\
       <h4 style="padding:5px;text-align:center;margin-bottom:20px;">Create Ticket for Application </h4>\
       <div style="display:inline-flex;"> \
         <div style="padding:10px;width: 600">\
-          <p>Captured</p>\
+          <div style="display:inline-flex;margin-bottom: 10px;"> \
+          <h4>Captured</h4>\
+          &nbsp;&nbsp;&nbsp;&nbsp;\
+          <button id="clear-captured" type="button" class="btn btn-outline-danger btn-sm">Clear All</button>\
+          </div>\
           <div class="row">\
-            <div class="card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-1" src="" style="height:100%;object-fit:contain"/>\
+              <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
             <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-2" src="" style="height:100%;object-fit:contain"/>\
+              <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
             <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-3" src="" style="height:100%;object-fit:contain"/>\
+              <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
             <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-4" src="" style="height:100%;object-fit:contain"/>\
+              <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
             <div class="card col-6" style="height:150px;overflow:hidden;">\
               <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
                 <i class="fa fa-trash"></i>\
               </button>\
-              <img id="img-5" src="" style="height:100%;object-fit:contain"/>\
+              <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
           </div>\
         </div>\
         <div style="padding:10px; ">\
           <p>Click+Drag on image to crop</p>\
           <div style="overflow:auto; height: 500px; width: 500px;">\
-            <img id="issueImage" src="" width="500"/>\
+            <img id="issueImage" src="https://via.placeholder.com/400x170?text=No%20Image" width="500"/>\
           </div>\
         </div>\
     </div>\
@@ -67,17 +71,37 @@
       '<script src="<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">" ></script>'
     );
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
+    $("head").append('<script src="capture/report.js" ></script>');
     var captureButton = $("<button></button>")
       .text("Capture")
-      .attr("id", "capture-me");
+      .attr("id", "capture-me")
+      .attr("class", "btn btn-primary m-1");
 
+    var reportButton = $("<button></button>")
+      .text("Report")
+      .attr("id", "report-issue")
+      .attr("class", "btn btn-primary m-2");
+
+    $("body").prepend(reportButton);
     $("body").prepend(captureButton);
     $("body").append(modal);
     $("#capture-me").click(function () {
       captureScreen();
     });
-    $("#close-capture-window").click(function () {
+    $(".close-capture-window").click(function () {
+      $("#selectionDialog").css("display", "none");
       $("#formDialog").css("display", "none");
+    });
+    $("#clear-captured").click(function () {
+      localStorage.setItem("captured", JSON.stringify([]));
+      $(".img-thumb")
+        .find("img")
+        .each(function () {
+          $(this).attr(
+            "src",
+            "https://via.placeholder.com/400x170?text=No%20Image"
+          );
+        });
     });
   });
   function pushImage(img) {
@@ -104,7 +128,7 @@
     renderFromLocalstorage();
     html2canvas(document.body).then(function (canvas) {
       var canvasUrl = canvas.toDataURL();
-      $("#formDialog").css("display", "flex");
+      $("#selectionDialog").css("display", "flex");
       $("#issueImage").attr("src", canvasUrl);
       $("#issueImageData").val(canvasUrl);
       var orgImg = $("#issueImage").get(0);
