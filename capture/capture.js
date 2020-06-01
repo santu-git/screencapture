@@ -18,39 +18,24 @@
       <div style="display:inline-flex;"> \
         <div style="padding:10px;width: 600">\
           <div style="display:inline-flex;margin-bottom: 10px;"> \
-          <h4>Captured</h4>\
+          <h4>Captured Images</h4>\
           &nbsp;&nbsp;&nbsp;&nbsp;\
           <button id="clear-captured" type="button" class="btn btn-outline-danger btn-sm">Clear All</button>\
           </div>\
           <div class="row">\
             <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
-              <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
-                <i class="fa fa-trash"></i>\
-              </button>\
               <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
             <div class="card col-6" style="height:150px;overflow:hidden;">\
-              <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
-                <i class="fa fa-trash"></i>\
-              </button>\
               <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
             <div class="card col-6" style="height:150px;overflow:hidden;">\
-              <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
-                <i class="fa fa-trash"></i>\
-              </button>\
               <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
             <div class="card col-6" style="height:150px;overflow:hidden;">\
-              <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
-                <i class="fa fa-trash"></i>\
-              </button>\
               <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
             <div class="card col-6" style="height:150px;overflow:hidden;">\
-              <button class="btn btn-clear btn-sm" style="color:red;position:absolute;"> \
-                <i class="fa fa-trash"></i>\
-              </button>\
               <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
           </div>\
@@ -129,6 +114,7 @@
     html2canvas(document.body).then(function (canvas) {
       var canvasUrl = canvas.toDataURL();
       $("#selectionDialog").css("display", "flex");
+      $("#formDialog").css("display", "none");
       $("#issueImage").attr("src", canvasUrl);
       $("#issueImageData").val(canvasUrl);
       var orgImg = $("#issueImage").get(0);
