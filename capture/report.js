@@ -15,32 +15,31 @@
     <div style="margin:auto;border: 1px solid black;padding: 10px;background-color: #e9e9e9;">\
     <h4 style="padding:5px;text-align:center;margin-bottom:20px;">Create Ticket for Application </h4>\
     <div style="display:inline-flex;"> \
-    <div style="padding:10px;">\
-      <label for="issueTitle">Issue Summary:</label>\
-      <br>\
-      <input type="text" id="issueTitle" />\
-      <br>\
-      <br>\
-      <label for="issueDescription">Issue Description:</label>\
-      <br>\
-      <textarea id="issueDescription" rows="4" cols="50"> </textarea>\
-      <input id="issueImageData" type="hidden" >\
-      <br>\
-      <br>\
-      <button id="submitIssue">+ Create Ticket</button>\
-      <button id="closeForm">Cancel</button>\
-    </div>\
-    <div style="padding:10px; ">\
-      <p>Select to Report Issue</p>\
-      <div style="overflow:auto; height: 500px; width: 600px;">\
-        <div id="captured-images" class="row">\
+      <div style="padding:10px;">\
+        <div class="form-group">\
+          <label for="issueTitle">Issue Summary:</label>\
+          <input type="text" id="issueTitle" class="form-control" />\
+        </div>\
+        <div class="form-group">\
+          <label for="issueDescription">Issue Description:</label>\
+          <textarea id="issueDescription" rows="4" cols="50" class="form-control"> </textarea>\
+        </div>\
+        <input id="issueImageData" type="hidden" >\
+        <button id="submitIssue" class="btn btn-success">+ Create Ticket</button>\
+        <button id="closeForm" class="btn btn-danger">Cancel</button>\
+      </div>\
+      <div style="padding:10px; ">\
+        <p>Click on image to select & attach to issue</p>\
+        <div style="overflow:auto; height: 500px; width: 600px;">\
+          <div id="captured-images" class="row">\
+          </div>\
         </div>\
       </div>\
     </div>\
   </div>';
   $(document).ready(function () {
     $("body").append(modal);
-    $("#report-issue").click(function () {
+    $(".report-issue").click(function () {
       reportIssue();
       //$( "#formDialog" ).css('display','block');
     });
@@ -89,6 +88,7 @@
   });
 
   function renderCapturedImages() {
+    $("#captured-images").html("");
     if (capturedImages) {
       capturedImages.forEach((data, idx) => {
         var imageThumb = $(

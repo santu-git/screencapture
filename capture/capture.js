@@ -13,7 +13,8 @@
     '\
   <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
     <div style="margin:auto;border: 1px solid black;padding: 10px;background-color: #e9e9e9;">\
-      <button class="close-capture-window" style="float:right" class="btn btn-danger">Close</button>\
+      <button class="close-capture-window btn btn-danger" style="float:right">Close</button>\
+      <button class="report-issue btn btn-primary" style="float:right;margin-right: 10px;">Report</button>\
       <h4 style="padding:5px;text-align:center;margin-bottom:20px;">Create Ticket for Application </h4>\
       <div style="display:inline-flex;"> \
         <div style="padding:10px;width: 600">\
@@ -57,6 +58,10 @@
     );
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
     $("head").append('<script src="capture/report.js" ></script>');
+    var btnContainer = $(
+      "<div style='z-index:9999;position:fixed'></div>"
+    ).attr("id", "btn-container");
+
     var captureButton = $("<button></button>")
       .text("Capture")
       .attr("id", "capture-me")
@@ -64,11 +69,12 @@
 
     var reportButton = $("<button></button>")
       .text("Report")
-      .attr("id", "report-issue")
-      .attr("class", "btn btn-primary m-2");
+      .attr("class", "btn btn-primary m-2 report-issue");
 
-    $("body").prepend(reportButton);
-    $("body").prepend(captureButton);
+    $("body").prepend(btnContainer);
+    //$("body").prepend(captureButton);
+    btnContainer.append(captureButton);
+    btnContainer.append(reportButton);
     $("body").append(modal);
     $("#capture-me").click(function () {
       captureScreen();
