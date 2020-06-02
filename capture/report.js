@@ -3,7 +3,8 @@
 // https://ourcodeworld.com/articles/read/281/top-7-best-image-cropping-javascript-and-jquery-plugins
 (function () {
   if (window.jQuery) {
-    var capturedImages = JSON.parse(localStorage.getItem("captured"));
+    var capturedImages = [];
+
     console.log("jQuet Loaded");
   } else {
     console.log("jQuery required for reporting plugin");
@@ -70,7 +71,6 @@
           return selectedIndex.includes(idx);
         });
       }
-      console.log(formData);
       var posting = $.post(
         "http://dca-qa-242:8000/Help/_SendAccessEmail",
         formData
@@ -88,6 +88,7 @@
   });
 
   function renderCapturedImages() {
+    capturedImages = JSON.parse(localStorage.getItem("captured"));
     $("#captured-images").html("");
     if (capturedImages) {
       capturedImages.forEach((data, idx) => {
