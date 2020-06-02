@@ -27,16 +27,16 @@
             <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
               <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
               <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
               <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
               <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
               <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
           </div>\
@@ -88,6 +88,7 @@
       $(".img-thumb")
         .find("img")
         .each(function () {
+          console.log($(this).attr("id"));
           $(this).attr(
             "src",
             "https://via.placeholder.com/400x170?text=No%20Image"
