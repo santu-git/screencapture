@@ -21,22 +21,22 @@
           <div style="display:inline-flex;margin-bottom: 10px;"> \
           <h4>Captured Images</h4>\
           &nbsp;&nbsp;&nbsp;&nbsp;\
-          <button id="clear-captured" type="button" class="btn btn-outline-danger btn-sm">Clear All</button>\
+          <button id="clear-captured" type="button" class="btn btn-danger btn-sm">Clear All</button>\
           </div>\
           <div class="row">\
-            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
               <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
               <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
               <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
               <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="img-thumb card col-6" style="height:150px;overflow:hidden;">\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
               <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
           </div>\
@@ -56,25 +56,56 @@
     $("head").append(
       '<script src="<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">" ></script>'
     );
+    $("head").append(
+      "<style> \
+      .card{\
+        position: relative;\
+        display: -webkit-box;\
+        display: -ms-flexbox;\
+        display: flex;\
+        -webkit-box-orient: vertical;\
+        -webkit-box-direction: normal;\
+        -ms-flex-direction: column;\
+        flex-direction: column;\
+        min-width: 0;\
+        word-wrap: break-word;\
+        background-color: #fff;\
+        background-clip: border-box;\
+        border: 1px solid rgba(0,0,0,.125);\
+        border-radius: .25rem;\
+      }\
+      .float-button{\
+        width:50px;\
+        height:50px;\
+        border-radius: 50%;\
+        z-index:9999;\
+        position:fixed;\
+        bottom:70px;\
+        right:10px;\
+        font-size: 2.3rem;\
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.4);\
+      }\
+      </style>"
+    );
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
     $("head").append('<script src="capture/report.js" ></script>');
-    var btnContainer = $(
-      "<div style='z-index:9999;position:fixed'></div>"
-    ).attr("id", "btn-container");
+    // var btnContainer = $(
+    //   "<div style='z-index:9999;position:fixed'></div>"
+    // ).attr("id", "btn-container");
 
     var captureButton = $("<button></button>")
-      .text("Capture")
+      .html('<i class="fa fa-camera" aria-hidden="true"></i>')
       .attr("id", "capture-me")
-      .attr("class", "btn btn-primary m-1");
+      .attr("class", "btn btn-primary float-button");
 
-    var reportButton = $("<button></button>")
-      .text("Report")
-      .attr("class", "btn btn-primary m-2 report-issue");
+    var reportButton = $("<button style='bottom:10px;'></button>")
+      .html('<i class="fa fa-bug" aria-hidden="true"></i>')
+      .attr("class", "btn btn-danger report-issue float-button");
 
-    $("body").prepend(btnContainer);
-    //$("body").prepend(captureButton);
-    btnContainer.append(captureButton);
-    btnContainer.append(reportButton);
+    //$("body").prepend(btnContainer);
+
+    $("body").prepend(captureButton);
+    $("body").prepend(reportButton);
     $("body").append(modal);
     $("#capture-me").click(function () {
       captureScreen();
