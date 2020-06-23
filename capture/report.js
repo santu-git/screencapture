@@ -3,8 +3,7 @@
 // https://ourcodeworld.com/articles/read/281/top-7-best-image-cropping-javascript-and-jquery-plugins
 (function () {
   if (window.jQuery) {
-    var capturedImages = [];
-
+   
     console.log("jQuet Loaded");
   } else {
     console.log("jQuery required for reporting plugin");
@@ -12,7 +11,7 @@
   }
   var modal =
     '\
-  <div id="formDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
+  <div id="formDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999;top:0px">\
     <div style="margin:auto;border: 1px solid black;padding: 10px;background-color: #e9e9e9;">\
     <h4 style="padding:5px;text-align:center;margin-bottom:20px;">Create Ticket for Application </h4>\
     <div style="display:inline-flex;"> \
@@ -51,40 +50,42 @@
         $("#issueImage").attr("src", "");
       $("#formDialog").css("display", "none");
     });
-    $("#submitIssue").click(function () {
-      var selectedIndex = [];
-      $('.img-thumb[data-selected="yes"]').each(function () {
-        selectedIndex.push(parseInt($(this).attr("data-index")));
-      });
 
-      // var indexes = $('.img-thumb[data-selected="yes"]').map(function () {
-      //   return $(this).attr("data-index");
-      // });
-      // console.log(indexes);
+    //$("#submitIssue").click(function () {
+    //  var selectedIndex = [];
+    //  $('.img-thumb[data-selected="yes"]').each(function () {
+    //    selectedIndex.push(parseInt($(this).attr("data-index")));
+    //  });
 
-      var formData = {
-        txtSummary: $("#issueTitle").val(),
-        txtDescr: $("#issueDescription").val(),
-      };
-      if (selectedIndex.length > 0 && capturedImages) {
-        formData["attachements"] = capturedImages.filter(function (d, idx) {
-          return selectedIndex.includes(idx);
-        });
-      }
-      var posting = $.post(
-        "http://dca-qa-242:8000/Help/_SendAccessEmail",
-        formData
-      );
-      posting.done(function (data) {
-        alert("Issue Successfully created");
-        $("#issueTitle").val("");
-        $("#issueDescription").val("");
-      });
-      posting.fail(function (error) {
-        alert("Could not create issue");
-        console.log(error);
-      });
-    });
+    //  // var indexes = $('.img-thumb[data-selected="yes"]').map(function () {
+    //  //   return $(this).attr("data-index");
+    //  // });
+    //  // console.log(indexes);
+
+    //  var formData = {
+    //    txtSummary: $("#issueTitle").val(),
+    //    txtDescr: $("#issueDescription").val(),
+    //  };
+    //  if (selectedIndex.length > 0 && capturedImages) {
+    //    formData["attachements"] = capturedImages.filter(function (d, idx) {
+    //      return selectedIndex.includes(idx);
+    //    });
+    //  }
+    //  var posting = $.post(
+    //    "http://dca-qa-242:8000/Help/_SendAccessEmail",
+    //    formData
+    //  );
+    //  posting.done(function (data) {
+    //    alert("Issue Successfully created");
+    //    $("#issueTitle").val("");
+    //    $("#issueDescription").val("");
+    //  });
+    //  posting.fail(function (error) {
+    //    alert("Could not create issue");
+    //    console.log(error);
+    //  });
+    //});
+
   });
 
   function renderCapturedImages() {

@@ -11,7 +11,7 @@
   var jcrop_api;
   var modal =
     '\
-  <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
+  <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999;top:0px">\
     <div style="margin:auto;border: 1px solid black;padding: 10px;background-color: #e9e9e9;">\
       <button class="close-capture-window btn btn-danger" style="float:right">Close</button>\
       <button class="report-issue btn btn-primary" style="float:right;margin-right: 10px;">Report</button>\
@@ -24,20 +24,20 @@
           <button id="clear-captured" type="button" class="btn btn-danger btn-sm">Clear All</button>\
           </div>\
           <div class="row">\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex">\
+              <img id="img-1" class="col-md-12" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex">\
+              <img id="img-2" class="col-md-12" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex">\
+              <img id="img-3" class="col-md-12" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex">\
+              <img id="img-4" class="col-md-12" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex">\
+              <img id="img-5" class="col-md-12" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
             </div>\
           </div>\
         </div>\
@@ -50,12 +50,8 @@
     </div>\
   </div>';
   $(document).ready(function () {
-    $("head").append(
-      '<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js" ></script>'
-    );
-    $("head").append(
-      '<script src="<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">" ></script>'
-    );
+   
+  
     $("head").append(
       "<style> \
       .card{\
@@ -77,18 +73,16 @@
       .float-button{\
         width:50px;\
         height:50px;\
-        border-radius: 50%;\
+        border-radius: 50% !important;\
         z-index:9999;\
         position:fixed;\
         bottom:70px;\
         right:10px;\
-        font-size: 2.3rem;\
-        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.4);\
+        font-size: 2.3rem !important;\
+        box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.4) !important;\
       }\
       </style>"
     );
-    $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
-    $("head").append('<script src="capture/report.js" ></script>');
     // var btnContainer = $(
     //   "<div style='z-index:9999;position:fixed'></div>"
     // ).attr("id", "btn-container");
@@ -108,7 +102,11 @@
     $("body").prepend(reportButton);
     $("body").append(modal);
     $("#capture-me").click(function () {
-      captureScreen();
+        debugger;
+        captureScreen();
+        $("html, body").animate({
+            scrollTop: 0
+        }, "fast");
     });
     $(".close-capture-window").click(function () {
       $("#selectionDialog").css("display", "none");
@@ -148,6 +146,7 @@
     }
   }
   function captureScreen() {
+      debugger
     renderFromLocalstorage();
     html2canvas(document.body).then(function (canvas) {
       var canvasUrl = canvas.toDataURL();
