@@ -3,6 +3,7 @@
 // https://ourcodeworld.com/articles/read/281/top-7-best-image-cropping-javascript-and-jquery-plugins
 (function () {
   if (window.jQuery) {
+    var capturedImages = [];
     console.log("jQuet Loaded");
   } else {
     console.log("jQuery required for reporting plugin");
@@ -12,42 +13,80 @@
   var modal =
     '\
   <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
-    <div style="margin:auto;border: 1px solid black;padding: 10px;background-color: #e9e9e9;">\
-      <button class="close-capture-window btn btn-danger" style="float:right">Close</button>\
-      <button class="report-issue btn btn-primary" style="float:right;margin-right: 10px;">Report</button>\
-      <h4 style="padding:5px;text-align:center;margin-bottom:20px;">Create Ticket for Application </h4>\
-      <div style="display:inline-flex;"> \
-        <div style="padding:10px;width: 600">\
-          <div style="display:inline-flex;margin-bottom: 10px;"> \
-          <h4>Captured Images</h4>\
-          &nbsp;&nbsp;&nbsp;&nbsp;\
-          <button id="clear-captured" type="button" class="btn btn-danger btn-sm">Clear All</button>\
-          </div>\
-          <div class="row">\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+    <div style="margin:auto;border: 1px solid black;background-color: #ffffff; width:85%;">\
+      <div style="background: aliceblue;"">\
+        <button type="button" class="close-capture-window close" style="float:right; margin:15px; display: block; width: 30px; height: 30px; border-width: 2px; border-style: solid; border-color: #000000; border-radius: 100%; opacity: 0.6!important;" aria-label="Close">\
+          <span aria-hidden="true">&times;</span>\
+        </button>\
+        <h4 style="font-weight: 600; text-align:left;margin-bottom:20px;margin-top:unset; padding:20px 15px;">Capture Image and create Ticket for ProDoc Application </h4>\
+      </div>\
+      <div style="padding:10px;"> \
+        <div class="" style="margin: unset;width: 100%; display:inline-flex;">\
+            <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 1 </div>\
+            <div class ="capture-div "style="background: linear-gradient(to right, #29add6 0%, #003399 100%); width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px;">Capture Images </div>\
+        </div>\
+        <div class="inernal-modal" id ="capture-image" style="display:none; margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+          <div style="display:inline-flex;padding:10px;">\
+            <div style="padding:10px;width: 600">\
+              <div style="display:inline-flex;margin-bottom: 10px;"> \
+              <h4>Captured Images</h4>\
+              &nbsp;&nbsp;&nbsp;&nbsp;\
+              <button id="clear-captured" type="button" class="btn btn-danger btn-sm">Clear All</button>\
+              </div>\
+              <div class="row">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                  <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+                </div>\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                  <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+                </div>\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                  <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+                </div>\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                  <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+                </div>\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                  <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+                </div>\
+              </div>\
             </div>\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
-            </div>\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
-            </div>\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
-            </div>\
-            <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
-              <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
+            <div style="padding:10px; ">\
+              <p>Click+Drag on image to crop</p>\
+              <div style="overflow:auto; height: 500px; width: 500px;">\
+                <img id="issueImage" src="https://via.placeholder.com/400x170?text=No%20Image" width="500"/>\
+              </div>\
             </div>\
           </div>\
         </div>\
-        <div style="padding:10px; ">\
-          <p>Click+Drag on image to crop</p>\
-          <div style="overflow:auto; height: 500px; width: 500px;">\
-            <img id="issueImage" src="https://via.placeholder.com/400x170?text=No%20Image" width="500"/>\
-          </div>\
+        <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
+          <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
+          <div class ="ticket-div "style="background: linear-gradient(to right, #d9d9d9 59%, #ffffff 100%); border: 1px solid #f2f2f2;  width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px;">Create Ticket </div>\
         </div>\
-    </div>\
+        <div style="margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+          <div style="display:inline-flex;"> \
+            <div style="padding:10px;">\
+              <div class="form-group">\
+                <label for="issueTitle">Issue Summary:</label>\
+                <input type="text" id="issueTitle" class="form-control" />\
+              </div>\
+              <div class="form-group">\
+                <label for="issueDescription">Issue Description:</label>\
+                <textarea id="issueDescription" rows="4" cols="50" class="form-control"> </textarea>\
+              </div>\
+              <input id="issueImageData" type="hidden" >\
+              <button id="closeForm" class="btn" style="border: 1px solid #29add6; color:#29add6;background-color: #ffffff;padding-left:30px;padding-right:30px;">Cancel</button>\
+              <button id="submitIssue" class="btn" style="margin-left: 10px; background-color: #29add6; color: #ffffff";>+ Create Ticket</button>\
+            </div>\
+            <div style="padding:10px; ">\
+              <p>Click on image to select & attach to issue</p>\
+              <div style="overflow:auto; height: 500px; width: 600px;">\
+                <div id="captured-images" class="row">\
+                </div>\
+              </div>\
+            </div>\
+        </div>\
+      </div>\
   </div>';
   $(document).ready(function () {
     $("head").append(
@@ -89,9 +128,7 @@
     );
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
     $("head").append('<script src="capture/report.js" ></script>');
-    // var btnContainer = $(
-    //   "<div style='z-index:9999;position:fixed'></div>"
-    // ).attr("id", "btn-container");
+
 
     var captureButton = $("<button></button>")
       .html('<i class="fa fa-camera" aria-hidden="true"></i>')
@@ -107,13 +144,20 @@
     $("body").prepend(captureButton);
     $("body").prepend(reportButton);
     $("body").append(modal);
+
+    $(".capture-div").click(function () {
+      $('#capture-image').toggle();
+    });
+
     $("#capture-me").click(function () {
       captureScreen();
     });
+
     $(".close-capture-window").click(function () {
       $("#selectionDialog").css("display", "none");
       $("#formDialog").css("display", "none");
     });
+
     $("#clear-captured").click(function () {
       localStorage.setItem("captured", JSON.stringify([]));
       $(".img-thumb")
@@ -126,7 +170,54 @@
           );
         });
     });
+
+    $("#closeForm").click(function () {
+      $("#issueTitle").val("");
+      $("#issueDescription").val(""),
+        $("#issueImageData").val(""),
+        $("#issueImage").attr("src", "");
+      // $("#formDialog").css("display", "none");
+    });
+
+    $("#submitIssue").click(function () {
+      var selectedIndex = [];
+      $('.img-thumb[data-selected="yes"]').each(function () {
+        selectedIndex.push(parseInt($(this).attr("data-index")));
+      });
+
+      // var indexes = $('.img-thumb[data-selected="yes"]').map(function () {
+      //   return $(this).attr("data-index");
+      // });
+      // console.log(indexes);
+
+      var formData = {
+        txtSummary: $("#issueTitle").val(),
+        txtDescr: $("#issueDescription").val(),
+      };
+      if (selectedIndex.length > 0 && capturedImages) {
+        formData["attachements"] = capturedImages.filter(function (d, idx) {
+          return selectedIndex.includes(idx);
+        });
+      }
+      var posting = $.post(
+        "http://dca-qa-242:8000/Help/_SendAccessEmail",
+        formData
+      );
+      posting.done(function (data) {
+        alert("Issue Successfully created");
+        $("#issueTitle").val("");
+        $("#issueDescription").val("");
+      });
+      posting.fail(function (error) {
+        alert("Could not create issue");
+        console.log(error);
+      });
+    });
+
   });
+
+
+
   function pushImage(img) {
     var capturedImages = JSON.parse(localStorage.getItem("captured"));
     if (capturedImages === null) {
@@ -195,4 +286,41 @@
       }
     });
   }
+  function renderCapturedImages() {
+    capturedImages = JSON.parse(localStorage.getItem("captured"));
+    $("#captured-images").html("");
+    if (capturedImages) {
+      capturedImages.forEach((data, idx) => {
+        var imageThumb = $(
+          '<div data-selected="no" data-index=' +
+            idx +
+            ' class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;cursor:pointer;">\
+            <i class="fa fa-check-circle" aria-hidden="true" style="color:green;display:none;position:absolute"></i>\
+            <img src="' +
+            data +
+            '" style="height:100%;object-fit:contain"/>\
+          </div>'
+        );
+        $("#captured-images").append(imageThumb);
+        //$("#img-" + (idx + 1)).attr("src", data);
+      });
+    }
+    $(".img-thumb").click(function () {
+      if ($(this).attr("data-selected") == "no") {
+        $(this).attr("data-selected", "yes");
+        $(this).find("i").css("display", "block");
+      } else {
+        $(this).attr("data-selected", "no");
+        $(this).find("i").css("display", "none");
+      }
+    });
+  }
+
+  function reportIssue() {
+    $("#selectionDialog").css("display", "none");
+    $("#formDialog").css("display", "flex");
+    renderCapturedImages();
+  }
+
+
 })();
