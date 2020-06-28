@@ -63,7 +63,7 @@
           <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
           <div class ="ticket-div"style="background: linear-gradient(to right, #d9d9d9 59%, #ffffff 100%); border: 1px solid #f2f2f2;  width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px;">Create Ticket </div>\
         </div>\
-        <div class="issue-ticket" style="display:none; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+        <div class="issue-ticket" id="formDialog" style="display:none; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
           <div style="display:inline-flex;"> \
             <div style="padding:10px;">\
               <div class="form-group">\
@@ -171,14 +171,16 @@
 
     $(".ticket-div").click(function () {
       $('.issue-ticket').toggle();
+      reportIssue();
     });
+
 
     $("#closeForm").click(function () {
       $("#issueTitle").val("");
       $("#issueDescription").val(""),
         $("#issueImageData").val(""),
         $("#issueImage").attr("src", "");
-      // $("#formDialog").css("display", "none");
+        console.log('cancel');
     });
 
     $("#submitIssue").click(function () {
@@ -318,8 +320,9 @@
     });
   }
 
+
   function reportIssue() {
-    $("#selectionDialog").css("display", "none");
+    // $("#selectionDialog").css("display", "none");
     $("#formDialog").css("display", "flex");
     renderCapturedImages();
   }
