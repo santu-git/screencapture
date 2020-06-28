@@ -76,7 +76,7 @@
               </div>\
               <input id="issueImageData" type="hidden" >\
               <button id="closeForm" class="btn" style="border: 1px solid #29add6; color:#29add6;background-color: #ffffff;padding-left:30px;padding-right:30px;"> Previous</button>\
-              <button id="submitIssue" class="btn" style="margin-left: 10px; background-color: #29add6; color: #ffffff";> Create </button>\
+              <button id="submitIssue" class="btn" style="margin-left: 10px; background-color: #29add6; color: #ffffff; padding-left: 30px; padding-right:30px;"> Create </button>\
             </div>\
             <div style="padding:10px; ">\
               <p>Click on image to select & attach to issue</p>\
