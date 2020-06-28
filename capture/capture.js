@@ -25,7 +25,7 @@
             <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 1 </div>\
             <div class ="capture-div "style="background: linear-gradient(to right, #29add6 0%, #003399 100%); width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px;">Capture Images </div>\
         </div>\
-        <div class="inernal-modal" id ="capture-image" style="display:none; margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+        <div class="inernal-modal" id ="capture-image" style=" margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
           <div style="display:inline-flex;padding:10px;">\
             <div style="padding:10px;width: 600">\
               <div style="display:inline-flex;margin-bottom: 10px;"> \
@@ -61,9 +61,9 @@
         </div>\
         <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
           <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
-          <div class ="ticket-div "style="background: linear-gradient(to right, #d9d9d9 59%, #ffffff 100%); border: 1px solid #f2f2f2;  width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px;">Create Ticket </div>\
+          <div class ="ticket-div"style="background: linear-gradient(to right, #d9d9d9 59%, #ffffff 100%); border: 1px solid #f2f2f2;  width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px;">Create Ticket </div>\
         </div>\
-        <div style="margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+        <div class="issue-ticket" style="display:none; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
           <div style="display:inline-flex;"> \
             <div style="padding:10px;">\
               <div class="form-group">\
@@ -75,8 +75,8 @@
                 <textarea id="issueDescription" rows="4" cols="50" class="form-control"> </textarea>\
               </div>\
               <input id="issueImageData" type="hidden" >\
-              <button id="closeForm" class="btn" style="border: 1px solid #29add6; color:#29add6;background-color: #ffffff;padding-left:30px;padding-right:30px;">Cancel</button>\
-              <button id="submitIssue" class="btn" style="margin-left: 10px; background-color: #29add6; color: #ffffff";>+ Create Ticket</button>\
+              <button id="closeForm" class="btn" style="border: 1px solid #29add6; color:#29add6;background-color: #ffffff;padding-left:30px;padding-right:30px;"> Previous</button>\
+              <button id="submitIssue" class="btn" style="margin-left: 10px; background-color: #29add6; color: #ffffff";> Create </button>\
             </div>\
             <div style="padding:10px; ">\
               <p>Click on image to select & attach to issue</p>\
@@ -85,9 +85,9 @@
                 </div>\
               </div>\
             </div>\
+          </div>\
         </div>\
-      </div>\
-  </div>';
+      </div>';
   $(document).ready(function () {
     $("head").append(
       '<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js" ></script>'
@@ -145,9 +145,7 @@
     $("body").prepend(reportButton);
     $("body").append(modal);
 
-    $(".capture-div").click(function () {
-      $('#capture-image').toggle();
-    });
+
 
     $("#capture-me").click(function () {
       captureScreen();
@@ -169,6 +167,10 @@
             "https://via.placeholder.com/400x170?text=No%20Image"
           );
         });
+    });
+
+    $(".ticket-div").click(function () {
+      $('.issue-ticket').toggle();
     });
 
     $("#closeForm").click(function () {
