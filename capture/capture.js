@@ -13,17 +13,19 @@
   var modal =
     '\
   <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
-    <div style="margin:auto;background-color: #ffffff; width:85%;">\
+    <div style="margin:auto;background-color: #f2f2f2; width:85%;">\
       <div style="background: aliceblue;"">\
-        <button type="button" class="close-capture-window close" style="float:right; margin:15px; display: block; width: 30px; height: 30px; border-width: 2px; border-style: solid; border-color: #000000; border-radius: 100%; opacity: 0.6!important;" aria-label="Close">\
-          <span aria-hidden="true">&times;</span>\
+        <button type="button" class="close-capture-window close" style="float:right; margin:15px; display: block;" aria-label="Close">\
+          <img id="close-btn" src="./assets/images-folder/close.png" style="height:100%;object-fit:contain"/>\
         </button>\
         <h4 style="font-weight: 600; text-align:left;margin-bottom:20px;margin-top:unset; padding:20px 15px;">Capture Image and create Ticket for ProDoc Application </h4>\
       </div>\
       <div style="padding:10px;"> \
         <div class="" style="margin: unset;width: 100%; display:inline-flex;">\
             <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 1 </div>\
-            <div class ="capture-div "style="background: linear-gradient(to right, #29add6 0%, #003399 100%); width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px; cursor:pointer;">Capture Images </div>\
+            <div class="first-image" style=" width: 90%;">\
+              <div class ="capture-div" id="capture-div-background-image" style=" margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 20px; background-size:1110px;">Capture Images </div>\
+            </div>\
         </div>\
         <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
           <div style="display:inline-flex;padding:10px;">\
@@ -61,7 +63,9 @@
         </div>\
         <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
           <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
-          <div class ="ticket-div"style="background: linear-gradient(to right, #d9d9d9 59%, #ffffff 100%); border: 1px solid #f2f2f2;  width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px; cursor:pointer;">Create Ticket </div>\
+          <div class="second-image" style=" width: 90%;">\
+            <div class ="ticket-div" id="ticket-div-background-image" style="background-repeat:no-repeat; margin-left: 10px; padding: 20px; background-size:1110px;  cursor:pointer;">Create Ticket </div>\
+          </div>\
         </div>\
         <div class="issue-ticket" id="formDialog" style="display:none; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
           <div style="display:inline-flex;"> \
@@ -144,6 +148,9 @@
     $("body").prepend(captureButton);
     // $("body").prepend(reportButton);
     $("body").append(modal);
+
+    document.getElementById('capture-div-background-image').style.backgroundImage="url(assets/images-folder/bitmap@2x.png)";
+    document.getElementById('ticket-div-background-image').style.backgroundImage="url(assets/images-folder/group-27@2x.png)";
 
     $(".capture-div").click(function () {
       console.log('clicked');
