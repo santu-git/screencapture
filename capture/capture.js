@@ -63,7 +63,7 @@
         <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
           <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
           <div class="second-image" style=" width: 90%;">\
-            <div class ="ticket-div" id="ticket-div-background-image" style="font-size: 16px; font-weight: bold;background-repeat:no-repeat; margin-left: 10px; padding: 20px 20px 30px; background-size: 100% 100%;  cursor:pointer;"> \
+            <div class ="ticket-div" id="ticket-div-background-image" style="font-size: 16px; font-weight: bold;background-repeat:no-repeat; margin-left: 10px; padding: 20px 20px 30px; background-size: 107% 100%;  cursor:pointer;"> \
               <span style="">Create Ticket</span>\
               <span class="small-text"style="color: #374b87; font-weight: 400; float:right; margin-right:325px;margin-top:-10px;">We are</span>\
               <br>\
