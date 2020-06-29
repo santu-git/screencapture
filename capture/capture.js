@@ -55,7 +55,7 @@
             </div>\
             <div style="padding:10px; ">\
               <p>Click+Drag on image to crop</p>\
-              <div style="overflow:auto; height: 500px; width: 500px;">\
+              <div style="overflow:auto; height: 500px; width: 500px; overflow-x: hidden;">\
                 <img id="issueImage" src="https://via.placeholder.com/400x170?text=No%20Image" width="500"/>\
               </div>\
             </div>\
