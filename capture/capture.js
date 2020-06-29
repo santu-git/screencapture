@@ -24,7 +24,7 @@
         <div class="" style="margin: unset;width: 100%; display:inline-flex;">\
             <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 1 </div>\
             <div class="first-image" style=" width: 90%;">\
-              <div class ="capture-div" id="capture-div-background-image" style=" margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 25px; background-size: 100% 100%;">Capture Images </div>\
+              <div class ="capture-div" id="capture-div-background-image" style="font-size:16px; font-weight:bold; margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 25px; background-size: 100% 100%;">Capture Images </div>\
             </div>\
         </div>\
         <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 90px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
