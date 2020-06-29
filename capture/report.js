@@ -95,7 +95,7 @@
         var imageThumb = $(
           '<div data-selected="no" data-index=' +
             idx +
-            ' class="img-thumb card col-6" style="height:150px;overflow:hidden;cursor:pointer;">\
+            ' class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;cursor:pointer;">\
             <i class="fa fa-check-circle" aria-hidden="true" style="color:green;display:none;position:absolute"></i>\
             <img src="' +
             data +
