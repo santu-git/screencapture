@@ -3,8 +3,6 @@
 // https://ourcodeworld.com/articles/read/281/top-7-best-image-cropping-javascript-and-jquery-plugins
 (function () {
   if (window.jQuery) {
-    var capturedImages = [];
-
     console.log("jQuet Loaded");
   } else {
     console.log("jQuery required for reporting plugin");
@@ -51,40 +49,7 @@
         $("#issueImage").attr("src", "");
       $("#formDialog").css("display", "none");
     });
-    $("#submitIssue").click(function () {
-      var selectedIndex = [];
-      $('.img-thumb[data-selected="yes"]').each(function () {
-        selectedIndex.push(parseInt($(this).attr("data-index")));
-      });
-
-      // var indexes = $('.img-thumb[data-selected="yes"]').map(function () {
-      //   return $(this).attr("data-index");
-      // });
-      // console.log(indexes);
-
-      var formData = {
-        txtSummary: $("#issueTitle").val(),
-        txtDescr: $("#issueDescription").val(),
-      };
-      if (selectedIndex.length > 0 && capturedImages) {
-        formData["attachements"] = capturedImages.filter(function (d, idx) {
-          return selectedIndex.includes(idx);
-        });
-      }
-      var posting = $.post(
-        "http://dca-qa-242:8000/Help/_SendAccessEmail",
-        formData
-      );
-      posting.done(function (data) {
-        alert("Issue Successfully created");
-        $("#issueTitle").val("");
-        $("#issueDescription").val("");
-      });
-      posting.fail(function (error) {
-        alert("Could not create issue");
-        console.log(error);
-      });
-    });
+    
   });
 
   function renderCapturedImages() {
