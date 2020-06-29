@@ -130,19 +130,19 @@
     $("head").append('<script src="capture/report.js" ></script>');
 
 
-    var captureButton = $("<button></button>")
-      .html('<i class="fa fa-camera" aria-hidden="true"></i>')
-      .attr("id", "capture-me")
-      .attr("class", "btn btn-primary float-button");
-
-    var reportButton = $("<button style='bottom:10px;'></button>")
+    var captureButton = $("<button style='bottom:10px;'></button>")
       .html('<i class="fa fa-bug" aria-hidden="true"></i>')
-      .attr("class", "btn btn-danger report-issue float-button");
+      .attr("id", "capture-me")
+      .attr("class", "btn btn-danger float-button");
+
+    // var reportButton = $("<button style='bottom:10px;'></button>")
+    //   .html('<i class="fa fa-bug" aria-hidden="true"></i>')
+    //   .attr("class", "btn btn-danger report-issue float-button");
 
     //$("body").prepend(btnContainer);
 
     $("body").prepend(captureButton);
-    $("body").prepend(reportButton);
+    // $("body").prepend(reportButton);
     $("body").append(modal);
 
     $(".capture-div").click(function () {
