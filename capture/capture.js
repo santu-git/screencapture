@@ -13,7 +13,7 @@
   var modal =
     '\
   <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
-    <div style="margin:auto;background-color: #f2f2f2; width:85%;">\
+    <div style="margin:auto;background-color: #ffffff; width:85%;">\
       <div style="background: aliceblue;"">\
         <button type="button" class="close-capture-window close" style="float:right; margin:15px; display: block;" aria-label="Close">\
           <img id="close-btn" src="./assets/images-folder/close.png" style="height:100%;object-fit:contain"/>\
@@ -27,7 +27,7 @@
               <div class ="capture-div" id="capture-div-background-image" style=" margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 20px; background-size: 100% 100%;">Capture Images </div>\
             </div>\
         </div>\
-        <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+        <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 90px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
           <div style="display:inline-flex;padding:10px;">\
             <div style="padding:10px;width: 600">\
               <div style="display:inline-flex;margin-bottom: 10px;"> \
@@ -64,10 +64,15 @@
         <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
           <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
           <div class="second-image" style=" width: 90%;">\
-            <div class ="ticket-div" id="ticket-div-background-image" style="background-repeat:no-repeat; margin-left: 10px; padding: 20px; background-size: 100% 100%;  cursor:pointer;">Create Ticket </div>\
+            <div class ="ticket-div" id="ticket-div-background-image" style="font-size: 16px; font-weight: bold;background-repeat:no-repeat; margin-left: 10px; padding: 20px 20px 30px; background-size: 100% 100%;  cursor:pointer;"> \
+              <span style="">Create Ticket</span>\
+              <span class="small-text"style="color: #374b87; font-weight: 400; float:right; margin-right:320px;">We are</span>\
+              <br>\
+              <span class="happy" style=" width: 114px; font-weight: bold; text-align: center; float:right; margin-right:282px; color: #374b87;font-size:16px;">Happy to Help</span>\
+            </div>\
           </div>\
         </div>\
-        <div class="issue-ticket" id="formDialog" style="display:none; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+        <div class="issue-ticket" id="formDialog" style="display:none; margin-right:90px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
           <div style="display:inline-flex;"> \
             <div style="padding:10px;">\
               <div class="form-group">\
@@ -150,7 +155,7 @@
     $("body").append(modal);
 
     document.getElementById('capture-div-background-image').style.backgroundImage="url(assets/images-folder/bitmap@2x.png)";
-    document.getElementById('ticket-div-background-image').style.backgroundImage="url(assets/images-folder/group-27@2x.png)";
+    document.getElementById('ticket-div-background-image').style.backgroundImage="url(assets/images-folder/group-27@3x.png)";
 
     $(".capture-div").click(function () {
       console.log('clicked');
