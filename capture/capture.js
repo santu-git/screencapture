@@ -13,7 +13,7 @@
   var modal =
     '\
   <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
-    <div style="margin:auto;border: 1px solid black;background-color: #ffffff; width:85%;">\
+    <div style="margin:auto;background-color: #ffffff; width:85%;">\
       <div style="background: aliceblue;"">\
         <button type="button" class="close-capture-window close" style="float:right; margin:15px; display: block; width: 30px; height: 30px; border-width: 2px; border-style: solid; border-color: #000000; border-radius: 100%; opacity: 0.6!important;" aria-label="Close">\
           <span aria-hidden="true">&times;</span>\
@@ -23,9 +23,9 @@
       <div style="padding:10px;"> \
         <div class="" style="margin: unset;width: 100%; display:inline-flex;">\
             <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 1 </div>\
-            <div class ="capture-div "style="background: linear-gradient(to right, #29add6 0%, #003399 100%); width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px;">Capture Images </div>\
+            <div class ="capture-div "style="background: linear-gradient(to right, #29add6 0%, #003399 100%); width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px; cursor:pointer;">Capture Images </div>\
         </div>\
-        <div class="inernal-modal" id ="capture-image" style=" margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+        <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
           <div style="display:inline-flex;padding:10px;">\
             <div style="padding:10px;width: 600">\
               <div style="display:inline-flex;margin-bottom: 10px;"> \
@@ -61,7 +61,7 @@
         </div>\
         <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
           <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
-          <div class ="ticket-div"style="background: linear-gradient(to right, #d9d9d9 59%, #ffffff 100%); border: 1px solid #f2f2f2;  width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px;">Create Ticket </div>\
+          <div class ="ticket-div"style="background: linear-gradient(to right, #d9d9d9 59%, #ffffff 100%); border: 1px solid #f2f2f2;  width: 90%; margin-left: 10px; padding: 15px; border-radius: 4px; cursor:pointer;">Create Ticket </div>\
         </div>\
         <div class="issue-ticket" id="formDialog" style="display:none; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
           <div style="display:inline-flex;"> \
@@ -145,7 +145,16 @@
     $("body").prepend(reportButton);
     $("body").append(modal);
 
-
+    $(".capture-div").click(function () {
+      console.log('clicked');
+      var content = document.getElementById('capture-image');
+      if(content.style.display == 'flex')
+          content.style.display = 'none';
+       else{
+          content.style.display = 'flex';
+          captureScreen();
+        }
+    });
 
     $("#capture-me").click(function () {
       captureScreen();
@@ -170,8 +179,13 @@
     });
 
     $(".ticket-div").click(function () {
-      $('.issue-ticket').toggle();
-      reportIssue();
+      var element = document.getElementById('formDialog');
+      if(element.style.display == 'none'){
+          element.style.display = 'block';
+          reportIssue();
+        }
+       else
+          element.style.display = 'none';
     });
 
 
