@@ -24,7 +24,7 @@
         <div class="" style="margin: unset;width: 100%; display:inline-flex;">\
             <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 1 </div>\
             <div class="first-image" style=" width: 90%;">\
-              <div class ="capture-div" id="capture-div-background-image" style=" margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 20px; background-size:1110px;">Capture Images </div>\
+              <div class ="capture-div" id="capture-div-background-image" style=" margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 20px; background-size: 100% 100%;">Capture Images </div>\
             </div>\
         </div>\
         <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
@@ -64,7 +64,7 @@
         <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
           <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
           <div class="second-image" style=" width: 90%;">\
-            <div class ="ticket-div" id="ticket-div-background-image" style="background-repeat:no-repeat; margin-left: 10px; padding: 20px; background-size:1110px;  cursor:pointer;">Create Ticket </div>\
+            <div class ="ticket-div" id="ticket-div-background-image" style="background-repeat:no-repeat; margin-left: 10px; padding: 20px; background-size: 100% 100%;  cursor:pointer;">Create Ticket </div>\
           </div>\
         </div>\
         <div class="issue-ticket" id="formDialog" style="display:none; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
