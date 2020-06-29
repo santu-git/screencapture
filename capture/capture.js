@@ -64,11 +64,11 @@
         <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
           <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
           <div class="second-image" style=" width: 90%;">\
-            <div class ="ticket-div" id="ticket-div-background-image" style="font-size: 16px; font-weight: bold;background-repeat:no-repeat; margin-left: 10px; padding: 30px 20px 30px; background-size: 100% 100%;  cursor:pointer;"> \
+            <div class ="ticket-div" id="ticket-div-background-image" style="font-size: 16px; font-weight: bold;background-repeat:no-repeat; margin-left: 10px; padding: 20px 20px 30px; background-size: 100% 100%;  cursor:pointer;"> \
               <span style="">Create Ticket</span>\
-              <span class="small-text"style="color: #374b87; font-weight: 400; float:right; margin-right:325px;">We are</span>\
+              <span class="small-text"style="color: #374b87; font-weight: 400; float:right; margin-right:325px;margin-top:-10px;">We are</span>\
               <br>\
-              <span class="happy" style=" width: 114px; font-weight: bold; text-align: center; float:right; margin-right:290px; color: #374b87;font-size:16px;">Happy to Help</span>\
+              <span class="happy" style=" width: 114px; font-weight: bold; text-align: center; float:right; margin-right:290px;margin-top:-10px; color: #374b87;font-size:16px;">Happy to Help</span>\
             </div>\
           </div>\
         </div>\
@@ -138,7 +138,6 @@
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
     $("head").append('<script src="capture/report.js" ></script>');
 
-
     var captureButton = $("<button style='bottom:10px;'></button>")
       .html('<i class="fa fa-bug" aria-hidden="true"></i>')
       .attr("id", "capture-me")
@@ -154,18 +153,21 @@
     // $("body").prepend(reportButton);
     $("body").append(modal);
 
-    document.getElementById('capture-div-background-image').style.backgroundImage="url(assets/images-folder/bitmap@2x.png)";
-    document.getElementById('ticket-div-background-image').style.backgroundImage="url(assets/images-folder/group-27@3x.png)";
+    document.getElementById(
+      "capture-div-background-image"
+    ).style.backgroundImage = "url(assets/images-folder/bitmap@2x.png)";
+    document.getElementById(
+      "ticket-div-background-image"
+    ).style.backgroundImage = "url(assets/images-folder/group-27@3x.png)";
 
     $(".capture-div").click(function () {
-      console.log('clicked');
-      var content = document.getElementById('capture-image');
-      if(content.style.display == 'flex')
-          content.style.display = 'none';
-       else{
-          content.style.display = 'flex';
-          captureScreen();
-        }
+      console.log("clicked");
+      var content = document.getElementById("capture-image");
+      if (content.style.display == "flex") content.style.display = "none";
+      else {
+        content.style.display = "flex";
+        captureScreen();
+      }
     });
 
     $("#capture-me").click(function () {
@@ -191,22 +193,19 @@
     });
 
     $(".ticket-div").click(function () {
-      var element = document.getElementById('formDialog');
-      if(element.style.display == 'none'){
-          element.style.display = 'block';
-          reportIssue();
-        }
-       else
-          element.style.display = 'none';
+      var element = document.getElementById("formDialog");
+      if (element.style.display == "none") {
+        element.style.display = "block";
+        reportIssue();
+      } else element.style.display = "none";
     });
-
 
     $("#closeForm").click(function () {
       $("#issueTitle").val("");
       $("#issueDescription").val(""),
         $("#issueImageData").val(""),
         $("#issueImage").attr("src", "");
-        console.log('cancel');
+      console.log("cancel");
     });
 
     $("#submitIssue").click(function () {
@@ -243,10 +242,7 @@
         console.log(error);
       });
     });
-
   });
-
-
 
   function pushImage(img) {
     var capturedImages = JSON.parse(localStorage.getItem("captured"));
@@ -346,12 +342,9 @@
     });
   }
 
-
   function reportIssue() {
     // $("#selectionDialog").css("display", "none");
     $("#formDialog").css("display", "flex");
     renderCapturedImages();
   }
-
-
 })();
