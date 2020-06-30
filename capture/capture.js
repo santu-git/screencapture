@@ -11,11 +11,11 @@
   var jcrop_api;
   var modal =
     '\
-  <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999;top:0px">\
-    <div style="margin:auto;background-color: #ffffff; width:85%">\
+  <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999;top:20px">\
+    <div style="margin:auto;background-color: #ffffff; width:85%; border: 1px solid #cecece;">\
       <div style="background: aliceblue;"">\
         <button type="button" class="close-capture-window close" style="float:right; margin:15px; display: block;" aria-label="Close">\
-          <img id="close-btn" src="../Scripts/ScreenCapture/assets/images-folder/close.png" style="height:100%;object-fit:contain"/>\
+          <img id="close-btn" src="../assets/images-folder/close.png" style="height:100%;object-fit:contain"/>\
         </button>\
         <h4 style="font-weight: 600; text-align:left;margin-bottom:20px;margin-top:unset; padding:20px 15px;">Capture Image and create Ticket for ProDoc Application </h4>\
       </div>\
@@ -26,7 +26,7 @@
               <div class ="capture-div" id="capture-div-background-image" style="font-size:16px; font-weight:bold; margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 20px; background-size: 100% 100%;">Capture Images </div>\
             </div>\
         </div>\
-        <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 90px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+        <div class="inernal-modal" id ="capture-image" style=" display: none; margin-left: 47px; margin-right: 90px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
           <div style="display:inline-flex;padding:10px;">\
             <div style="padding:10px;width: 392px">\
               <div style="display:inline-flex;margin-bottom: 10px;"> \
@@ -71,7 +71,7 @@
             </div>\
           </div>\
         </div>\
-        <div class="issue-ticket" id="formDialog" style="display:none; margin-right:90px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+        <div class="issue-ticket" id="formDialog" style="display:flex; margin-right:90px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
           <div style="display:inline-flex;"> \
             <div style="padding:10px;">\
               <div class="form-group">\
@@ -97,7 +97,11 @@
         </div>\
       </div>';
   $(document).ready(function () {
-    
+
+    $("head").append(
+      '<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js" ></script>'
+    );
+
     $("head").append(
       '<script src="<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">" ></script>'
     );
@@ -132,47 +136,87 @@
       }\
       </style>"
     );
-    
+    $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
+
+
+
     var captureButton = $("<button style='bottom:10px;'></button>")
       .html('<i class="fa fa-bug" aria-hidden="true"></i>')
       .attr("id", "capture-me")
       .attr("class", "btn btn-danger float-button");
 
-    // var reportButton = $("<button style='bottom:10px;'></button>")
-    //   .html('<i class="fa fa-bug" aria-hidden="true"></i>')
-    //   .attr("class", "btn btn-danger report-issue float-button");
-
-    //$("body").prepend(btnContainer);
 
     $("body").prepend(captureButton);
-    // $("body").prepend(reportButton);
     $("body").append(modal);
+
+    // document.getElementById(
+    //   "capture-div-background-image"
+    // ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/bitmap@2x.png)";
+    // document.getElementById(
+    //   "ticket-div-background-image"
+    // ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/group-27@3x.png)";
 
     document.getElementById(
       "capture-div-background-image"
-    ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/bitmap@2x.png)";
+    ).style.backgroundImage = "url(../assets/images-folder/bitmap@2x.png)";
     document.getElementById(
       "ticket-div-background-image"
-    ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/group-27@3x.png)";
+    ).style.backgroundImage = "url(../assets/images-folder/group-27@3x.png)";
+
+
+
+
+    var content = document.getElementById("capture-image");
+    var element = document.getElementById("formDialog");
+
+
+
+
+
 
     $(".capture-div").click(function () {
       console.log("clicked");
-      var content = document.getElementById("capture-image");
-      if (content.style.display == "flex") content.style.display = "none";
+      if (content.style.display == "none"){
+         content.style.display = "flex";
+          element.style.display = "none";
+         captureScreen();
+
+       }
       else {
-        content.style.display = "flex";
-        captureScreen();
+        content.style.display = "none";
       }
     });
 
+
+
+    $(".ticket-div").click(function () {
+      console.log('tap');
+      if (element.style.display == "flex"){
+         element.style.display = "none";
+         content.style.display = "none";
+       }
+       else {
+         element.style.display = "flex";
+         content.style.display = "none";
+         reportIssue();
+       }
+    });
+
+
+
     $("#capture-me").click(function () {
       captureScreen();
+
     });
+
+
 
     $(".close-capture-window").click(function () {
       $("#selectionDialog").css("display", "none");
       $("#formDialog").css("display", "none");
     });
+
+
 
     $("#clear-captured").click(function () {
       localStorage.setItem("captured", JSON.stringify([]));
@@ -187,13 +231,7 @@
         });
     });
 
-    $(".ticket-div").click(function () {
-      var element = document.getElementById("formDialog");
-      if (element.style.display == "none") {
-        element.style.display = "block";
-        reportIssue();
-      } else element.style.display = "none";
-    });
+
 
     $("#closeForm").click(function () {
       $("#issueTitle").val("");
@@ -203,7 +241,7 @@
       console.log("cancel");
     });
 
-   
+
   });
 
   function pushImage(img) {
@@ -231,7 +269,6 @@
     html2canvas(document.body).then(function (canvas) {
       var canvasUrl = canvas.toDataURL();
       $("#selectionDialog").css("display", "flex");
-      $("#formDialog").css("display", "none");
       $("#issueImage").attr("src", canvasUrl);
       $("#issueImageData").val(canvasUrl);
       var orgImg = $("#issueImage").get(0);
