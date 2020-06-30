@@ -12,7 +12,7 @@
   var modal =
     '\
   <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999;top:20px">\
-    <div style="margin:auto;background-color: #ffffff; width:85%; border: 1px solid #cecece;">\
+    <div style="margin:auto;background-color: #ffffff; width:70%; border: 1px solid #cecece;">\
       <div style="background: aliceblue;"">\
         <button type="button" class="close-capture-window close" style="float:right; margin:15px; display: block;" aria-label="Close">\
           <img id="close-btn" src="../assets/images-folder/close.png" style="height:100%;object-fit:contain"/>\
@@ -35,26 +35,26 @@
               <button id="clear-captured" type="button" class="btn btn-danger btn-sm">Clear All</button>\
               </div>\
               <div class="row">\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
                   <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
                   <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
                   <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
                   <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
                   <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
               </div>\
             </div>\
             <div style="padding:10px; ">\
               <p>Click+Drag on image to crop</p>\
-              <div style="overflow:auto; height: 500px; width: 500px; overflow-x: hidden;">\
+              <div style="overflow:auto; height: 400px; width: 515px; overflow-x: hidden;">\
                 <img id="issueImage" src="https://via.placeholder.com/400x170?text=No%20Image" width="500"/>\
               </div>\
             </div>\
@@ -88,7 +88,7 @@
             </div>\
             <div style="padding:10px; ">\
               <p>Click on image to select & attach to issue</p>\
-              <div style="overflow:auto; height: 500px; width: 600px;">\
+              <div style="overflow:auto; height: 400px; width: 600px;">\
                 <div id="captured-images" class="row">\
                 </div>\
               </div>\
@@ -177,10 +177,9 @@
     $(".capture-div").click(function () {
       console.log("clicked");
       if (content.style.display == "none"){
-         content.style.display = "flex";
-          element.style.display = "none";
-         captureScreen();
-
+        content.style.display = "flex";
+        element.style.display = "none";
+        captureScreen();
        }
       else {
         content.style.display = "none";
@@ -191,7 +190,8 @@
 
     $(".ticket-div").click(function () {
       console.log('tap');
-      if (element.style.display == "flex"){
+      if (element.style.display == "flex")
+      {
          element.style.display = "none";
          content.style.display = "none";
        }
@@ -205,6 +205,8 @@
 
 
     $("#capture-me").click(function () {
+      $(".container-fluide").css("background-color", "#cecece");
+      $(".container-fluide").css("opacity", "0.6");
       captureScreen();
 
     });
@@ -214,6 +216,8 @@
     $(".close-capture-window").click(function () {
       $("#selectionDialog").css("display", "none");
       $("#formDialog").css("display", "none");
+      $(".container-fluide").css("background-color", "unset");
+      $(".container-fluide").css("opacity", "unset");
     });
 
 
@@ -265,6 +269,8 @@
     }
   }
   function captureScreen() {
+    // $(".container-fluide").css("background-color", "#cecece");
+    // $(".container-fluide").css("opacity", "0.6");
     renderFromLocalstorage();
     html2canvas(document.body).then(function (canvas) {
       var canvasUrl = canvas.toDataURL();
