@@ -3,7 +3,6 @@
 // https://ourcodeworld.com/articles/read/281/top-7-best-image-cropping-javascript-and-jquery-plugins
 (function () {
   if (window.jQuery) {
-    var capturedImages = [];
     console.log("jQuet Loaded");
   } else {
     console.log("jQuery required for reporting plugin");
@@ -12,11 +11,11 @@
   var jcrop_api;
   var modal =
     '\
-  <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999">\
-    <div style="margin:auto;background-color: #ffffff; width:85%;">\
+  <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999;top:0px">\
+    <div style="margin:auto;background-color: #ffffff; width:85%">\
       <div style="background: aliceblue;"">\
         <button type="button" class="close-capture-window close" style="float:right; margin:15px; display: block;" aria-label="Close">\
-          <img id="close-btn" src="./assets/images-folder/close.png" style="height:100%;object-fit:contain"/>\
+          <img id="close-btn" src="../Scripts/ScreenCapture/assets/images-folder/close.png" style="height:100%;object-fit:contain"/>\
         </button>\
         <h4 style="font-weight: 600; text-align:left;margin-bottom:20px;margin-top:unset; padding:20px 15px;">Capture Image and create Ticket for ProDoc Application </h4>\
       </div>\
@@ -29,26 +28,26 @@
         </div>\
         <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 90px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
           <div style="display:inline-flex;padding:10px;">\
-            <div style="padding:10px;width: 600">\
+            <div style="padding:10px;width: 392px">\
               <div style="display:inline-flex;margin-bottom: 10px;"> \
               <h4>Captured Images</h4>\
               &nbsp;&nbsp;&nbsp;&nbsp;\
               <button id="clear-captured" type="button" class="btn btn-danger btn-sm">Clear All</button>\
               </div>\
               <div class="row">\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
                   <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
                   <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
                   <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
                   <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
-                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;">\
+                <div class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;display:flex;">\
                   <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                 </div>\
               </div>\
@@ -98,9 +97,7 @@
         </div>\
       </div>';
   $(document).ready(function () {
-    $("head").append(
-      '<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js" ></script>'
-    );
+    
     $("head").append(
       '<script src="<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">" ></script>'
     );
@@ -135,9 +132,7 @@
       }\
       </style>"
     );
-    $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
-    $("head").append('<script src="capture/report.js" ></script>');
-
+    
     var captureButton = $("<button style='bottom:10px;'></button>")
       .html('<i class="fa fa-bug" aria-hidden="true"></i>')
       .attr("id", "capture-me")
@@ -155,10 +150,10 @@
 
     document.getElementById(
       "capture-div-background-image"
-    ).style.backgroundImage = "url(assets/images-folder/bitmap@2x.png)";
+    ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/bitmap@2x.png)";
     document.getElementById(
       "ticket-div-background-image"
-    ).style.backgroundImage = "url(assets/images-folder/group-27@3x.png)";
+    ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/group-27@3x.png)";
 
     $(".capture-div").click(function () {
       console.log("clicked");
@@ -208,40 +203,7 @@
       console.log("cancel");
     });
 
-    $("#submitIssue").click(function () {
-      var selectedIndex = [];
-      $('.img-thumb[data-selected="yes"]').each(function () {
-        selectedIndex.push(parseInt($(this).attr("data-index")));
-      });
-
-      // var indexes = $('.img-thumb[data-selected="yes"]').map(function () {
-      //   return $(this).attr("data-index");
-      // });
-      // console.log(indexes);
-
-      var formData = {
-        txtSummary: $("#issueTitle").val(),
-        txtDescr: $("#issueDescription").val(),
-      };
-      if (selectedIndex.length > 0 && capturedImages) {
-        formData["attachements"] = capturedImages.filter(function (d, idx) {
-          return selectedIndex.includes(idx);
-        });
-      }
-      var posting = $.post(
-        "http://dca-qa-242:8000/Help/_SendAccessEmail",
-        formData
-      );
-      posting.done(function (data) {
-        alert("Issue Successfully created");
-        $("#issueTitle").val("");
-        $("#issueDescription").val("");
-      });
-      posting.fail(function (error) {
-        alert("Could not create issue");
-        console.log(error);
-      });
-    });
+   
   });
 
   function pushImage(img) {
