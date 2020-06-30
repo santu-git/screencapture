@@ -204,10 +204,10 @@
 
 
 
-    $("#capture-me").click(function () {
+    $("#capture-me").click(function () {      
+      captureScreen();
       $(".container-fluide").css("background-color", "#cecece");
       $(".container-fluide").css("opacity", "0.6");
-      captureScreen();
 
     });
 
