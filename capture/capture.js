@@ -22,12 +22,12 @@
         </div>\
         <div style="padding:10px;"> \
           <div class="" style="margin: unset;width: 100%; display:inline-flex;">\
-              <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 1 </div>\
-              <div class="first-image" style=" width: 90%;">\
+              <div class="num-bullet" style="background-color: #29add6; width:3%; height: 32px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 1 </div>\
+              <div class="first-image" style=" width: 94%;">\
                 <div class ="capture-div" id="capture-div-background-image" style="font-size:16px; font-weight:bold; margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 16px; background-size: 100% 100%;">Capture Images </div>\
               </div>\
           </div>\
-          <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+          <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 45px; margin-right: 35px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
             <div style="display:inline-flex;padding:10px;">\
               <div style="padding:10px;width: 362px">\
                 <div style="display:inline-flex;margin-bottom: 10px;"> \
@@ -62,8 +62,8 @@
             </div>\
           </div>\
           <div class="" style="margin: unset;width: 100%; padding-top:10px; display:inline-flex;">\
-            <div class="num-bullet" style="background-color: #29add6; width:3%; height: 35px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
-            <div class="second-image" style=" width: 90%;">\
+            <div class="num-bullet" style="background-color: #29add6; width:3%; height: 32px; position: relative;border: 1px solid  #29add6; border-radius: 100%; display:flex; justify-content: center; align-items: center;font-size: 16px; color:#ffffff; font-weight:600; margin-top: 10px;"> 2 </div>\
+            <div class="second-image" style=" width: 94%;">\
               <div class ="ticket-div" id="ticket-div-background-image" style="font-size: 16px; font-weight: bold;background-repeat:no-repeat; margin-left: 10px; padding: 16px; background-size: 107% 100%;  cursor:pointer;"> \
                 <span style="">Create Ticket</span>\
                 <span class="small-text"style="color: #374b87; font-weight: 400; float:right; margin-right:325px;margin-top:-10px;">We are</span>\
@@ -72,9 +72,9 @@
               </div>\
             </div>\
           </div>\
-          <div class="issue-ticket" id="formDialog" style="display:none; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+          <div class="issue-ticket" id="formDialog" style="display:none; margin-right:35px; margin-left:45px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
             <div style="display:inline-flex; width:100%;"> \
-              <div style="padding:10px; width:50%;">\
+              <div style="padding:10px; width:55%;">\
                 <div class="form-group">\
                   <label for="issueTitle">Issue Summary:</label>\
                   <input type="text" id="issueTitle" class="form-control" />\
@@ -87,10 +87,10 @@
                 <button id="closeForm" class="btn" style="border: 1px solid #29add6; color:#29add6;background-color: #ffffff;padding-left:30px;padding-right:30px;"> Previous</button>\
                 <button id="submitIssue" class="btn" style="margin-left: 10px; background-color: #29add6; color: #ffffff; padding-left: 30px; padding-right:30px;"> Create </button>\
               </div>\
-              <div style="padding:10px; width:50%;">\
+              <div style="padding:10px; width:45%;">\
                 <p>Click on image to select & attach to issue</p>\
                 <div style="overflow:auto; height: 400px; ">\
-                  <div id="captured-images" class="row">\
+                  <div id="captured-images" class="row" style="margin: unset;">\
                   </div>\
                 </div>\
               </div>\
@@ -168,46 +168,6 @@
 
 
 
-    var content = document.getElementById("capture-image");
-    var element = document.getElementById("formDialog");
-
-
-
-
-
-
-    $(".capture-div").click(function () {
-      console.log("clicked");
-      if (content.style.display == "flex"){
-        content.style.display = "none";
-        element.style.display = "none";
-
-       }
-      else {
-        content.style.display = "flex";
-        captureScreen();
-        element.style.display = "none";
-      }
-    });
-
-
-
-    $(".ticket-div").click(function () {
-      console.log('tap');
-      if (element.style.display == "none")
-      {
-         element.style.display = "flex";
-         content.style.display = "none";
-         reportIssue();
-       }
-       else {
-         element.style.display = "none";
-
-       }
-    });
-
-
-
     $("#capture-me").click(function () {
       captureScreen();
       // $(".container-fluide").css("background", "rgba(0, 0, 0,0.45)");
@@ -215,6 +175,25 @@
 
     });
 
+    var content = document.getElementById("capture-image");
+    var element = document.getElementById("formDialog");
+
+
+    $(".capture-div").click(function () {
+      if (content.style.display == "flex") content.style.display = "none";
+      else {
+        content.style.display = "flex";
+        element.style.display = "none";
+      }
+    });
+
+
+    $(".ticket-div").click(function () {
+      if (element.style.display == "none"){
+       reportIssue();
+       content.style.display = "none";
+       }else  element.style.display = "none";
+    });
 
 
     $(".close-capture-window").click(function () {
@@ -240,13 +219,12 @@
     });
 
 
-
     $("#closeForm").click(function () {
       $("#issueTitle").val("");
       $("#issueDescription").val(""),
         $("#issueImageData").val(""),
         $("#issueImage").attr("src", "");
-      console.log("cancel");
+
     });
 
 
@@ -327,7 +305,7 @@
         var imageThumb = $(
           '<div data-selected="no" data-index=' +
             idx +
-            ' class="img-thumb card col-sm-12 col-md-6" style="height:150px;overflow:hidden;cursor:pointer;">\
+            ' class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;cursor:pointer;">\
             <i class="fa fa-check-circle" aria-hidden="true" style="color:green;display:none;position:absolute"></i>\
             <img src="' +
             data +
