@@ -26,9 +26,9 @@
               <div class ="capture-div" id="capture-div-background-image" style="font-size:16px; font-weight:bold; margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 20px; background-size: 100% 100%;">Capture Images </div>\
             </div>\
         </div>\
-        <div class="inernal-modal" id ="capture-image" style=" display: none; margin-left: 47px; margin-right: 90px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+        <div class="inernal-modal" id ="capture-image" style=" display: none; margin-left: 47px; margin-right: 80px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
           <div style="display:inline-flex;padding:10px;">\
-            <div style="padding:10px;width: 392px">\
+            <div style="padding:10px;width: 362px">\
               <div style="display:inline-flex;margin-bottom: 10px;"> \
               <h4>Captured Images</h4>\
               &nbsp;&nbsp;&nbsp;&nbsp;\
@@ -54,7 +54,7 @@
             </div>\
             <div style="padding:10px; ">\
               <p>Click+Drag on image to crop</p>\
-              <div style="overflow:auto; height: 400px; width: 515px; overflow-x: hidden;">\
+              <div style="overflow:auto; height: 460px; width: 515px; overflow-x: hidden;">\
                 <img id="issueImage" src="https://via.placeholder.com/400x170?text=No%20Image" width="500"/>\
               </div>\
             </div>\
@@ -71,9 +71,9 @@
             </div>\
           </div>\
         </div>\
-        <div class="issue-ticket" id="formDialog" style="display:flex; margin-right:90px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
-          <div style="display:inline-flex;"> \
-            <div style="padding:10px;">\
+        <div class="issue-ticket" id="formDialog" style="display:flex; margin-right:80px; margin-left:47px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+          <div style="display:inline-flex; width:100%;"> \
+            <div style="padding:10px; width:50%;">\
               <div class="form-group">\
                 <label for="issueTitle">Issue Summary:</label>\
                 <input type="text" id="issueTitle" class="form-control" />\
@@ -86,9 +86,9 @@
               <button id="closeForm" class="btn" style="border: 1px solid #29add6; color:#29add6;background-color: #ffffff;padding-left:30px;padding-right:30px;"> Previous</button>\
               <button id="submitIssue" class="btn" style="margin-left: 10px; background-color: #29add6; color: #ffffff; padding-left: 30px; padding-right:30px;"> Create </button>\
             </div>\
-            <div style="padding:10px; ">\
+            <div style="padding:10px; width:50%;">\
               <p>Click on image to select & attach to issue</p>\
-              <div style="overflow:auto; height: 400px; width: 600px;">\
+              <div style="overflow:auto; height: 460px; ">\
                 <div id="captured-images" class="row">\
                 </div>\
               </div>\
