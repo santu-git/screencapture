@@ -26,7 +26,7 @@
                 <div class ="capture-div" id="capture-div-background-image" style="font-size:16px; font-weight:bold; margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 16px; background-size: 100% 100%;">Capture Images </div>\
               </div>\
           </div>\
-          <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 45px; margin-right: 35px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+          <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 42Spx; margin-right: 35px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
             <div style="display:inline-flex;padding:10px;">\
               <div style="padding:10px;width: 362px">\
                 <div style="display:inline-flex;margin-bottom: 10px;"> \
@@ -71,7 +71,7 @@
               </div>\
             </div>\
           </div>\
-          <div class="issue-ticket" id="formDialog" style="display:none; margin-right:35px; margin-left:45px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+          <div class="issue-ticket" id="formDialog" style="display:none; margin-right:35px; margin-left:42px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
             <div style="display:inline-flex; width:100%;"> \
               <div style="padding:10px; width:55%;">\
                 <div class="form-group">\
@@ -83,7 +83,7 @@
                   <textarea id="issueDescription" rows="4" cols="50" class="form-control"> </textarea>\
                 </div>\
                 <input id="issueImageData" type="hidden" >\
-                <button id="closeForm" class="btn" style="border: 1px solid #29add6; color:#29add6;background-color: #ffffff;padding-left:30px;padding-right:30px;"> Previous</button>\
+                <button id="closeForm" class="btn" style="border: 1px solid #29add6; color:#29add6;background-color: #ffffff;padding-left:30px;padding-right:30px;">Clear</button>\
                 <button id="submitIssue" class="btn" style="margin-left: 10px; background-color: #29add6; color: #ffffff; padding-left: 30px; padding-right:30px;"> Create </button>\
               </div>\
               <div style="padding:10px; width:45%;">\
@@ -156,6 +156,7 @@
       </style>"
     );
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
+    $("head").append('<script src="capture/report.js" ></script>');
 
     var captureButton = $("<button style='bottom:10px;'></button>")
       .html('<i class="fa fa-bug" aria-hidden="true"></i>')
@@ -221,13 +222,52 @@
         });
     });
 
+
     $("#closeForm").click(function () {
       $("#issueTitle").val("");
       $("#issueDescription").val(""),
         $("#issueImageData").val(""),
         $("#issueImage").attr("src", "");
     });
-  });
+
+    $("#submitIssue").click(function () {
+          var selectedIndex = [];
+          $('.img-thumb[data-selected="yes"]').each(function () {
+            selectedIndex.push(parseInt($(this).attr("data-index")));
+          });
+
+          // var indexes = $('.img-thumb[data-selected="yes"]').map(function () {
+          //   return $(this).attr("data-index");
+          // });
+          // console.log(indexes);
+
+          var formData = {
+            txtSummary: $("#issueTitle").val(),
+            txtDescr: $("#issueDescription").val(),
+          };
+          if (selectedIndex.length > 0 && capturedImages) {
+            formData["attachements"] = capturedImages.filter(function (d, idx) {
+              return selectedIndex.includes(idx);
+            });
+          }
+          var posting = $.post(
+            "http://dca-qa-242:8000/Help/_SendAccessEmail",
+            formData
+          );
+          posting.done(function (data) {
+            alert("Issue Successfully created");
+            $("#issueTitle").val("");
+            $("#issueDescription").val("");
+          });
+          posting.fail(function (error) {
+            alert("Could not create issue");
+            console.log(error);
+          });
+        });
+
+      });
+
+
 
   function pushImage(img) {
     var capturedImages = JSON.parse(localStorage.getItem("captured"));
