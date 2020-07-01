@@ -11,7 +11,7 @@
   var jcrop_api;
   var modal =
     '\
-  <div id="overlay" style="width: 100%; display:block;top:10px;position:absolute;">\
+  <div id="modal-div" style="width: 100%; display:block;top:10px;position:absolute;">\
     <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999;top:20px">\
       <div style="margin:auto;background-color: #ffffff; width:70%; border: 1px solid #cecece;">\
         <div style="background: aliceblue;"">\
@@ -149,8 +149,21 @@
 
 
     $("body").prepend(captureButton);
+    $("body").append("<div id='overlay'></div>");
     $("body").append(modal);
 
+
+
+    $("#overlay")
+      .css({
+         'opacity' : 0.4,
+         'position': 'absolute',
+         'top': 0,
+         'left': 0,
+         'background-color': 'rgba(0, 0, 0,0.45)',
+         'width': '100%',
+         'z-index': 5000,         
+      });
     // document.getElementById(
     //   "capture-div-background-image"
     // ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/bitmap@2x.png)";
@@ -170,8 +183,8 @@
 
     $("#capture-me").click(function () {
       captureScreen();
-      // $(".container-fluide").css("background", "rgba(0, 0, 0,0.45)");
-      // $(".container-fluide").css("opacity", "0.8");
+      // $("body").css("background", "rgba(0, 0, 0,0.45)");
+      // $("body").css("opacity", "0.8");
 
     });
 
@@ -199,8 +212,8 @@
     $(".close-capture-window").click(function () {
       $("#selectionDialog").css("display", "none");
       $("#formDialog").css("display", "none");
-      // $(".container-fluide").css("background-color", "unset");
-      // $(".container-fluide").css("opacity", "unset");
+      // $("body").css("background-color", "unset");
+      // $("body").css("opacity", "unset");
     });
 
 
