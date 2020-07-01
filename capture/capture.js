@@ -35,19 +35,19 @@
                 <button id="clear-captured" type="button" class="btn btn-danger btn-sm">Clear All</button>\
                 </div>\
                 <div class="row">\
-                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
+                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex; max-width:48%;">\
                     <img id="img-1" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                   </div>\
-                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
+                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex; max-width:48%;">\
                     <img id="img-2" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                   </div>\
-                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
+                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex; max-width:48%;">\
                     <img id="img-3" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                   </div>\
-                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
+                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex; max-width:48%;">\
                     <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                   </div>\
-                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;">\
+                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;" max-width:48%;>\
                     <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                   </div>\
                 </div>\
@@ -121,6 +121,7 @@
         background-clip: border-box;\
         border: 1px solid rgba(0,0,0,.125);\
         border-radius: .25rem;\
+        margin: 3px;\
       }\
       .float-button{\
         width:50px;\
@@ -134,7 +135,6 @@
         box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.4);\
       }\
       #cp-overlay{\
-        opacity: 0.4;\
         position: absolute;\
         top: 0;\
         left: 0;\
@@ -181,9 +181,6 @@
 
     $("#capture-me").click(function () {
       captureScreen();
-
-      // $("body").css("background", "rgba(0, 0, 0,0.45)");
-      // $("body").css("opacity", "0.8");
     });
 
     var content = document.getElementById("capture-image");
@@ -209,8 +206,6 @@
       $("body").toggleClass("disable-scroll", "");
       $("#selectionDialog").css("display", "none");
       $("#formDialog").css("display", "none");
-      // $("body").css("background-color", "unset");
-      // $("body").css("opacity", "unset");
     });
 
     $("#clear-captured").click(function () {
@@ -311,7 +306,7 @@
         var imageThumb = $(
           '<div data-selected="no" data-index=' +
             idx +
-            ' class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;cursor:pointer;">\
+            ' class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;cursor:pointer;max-width:48%;">\
             <i class="fa fa-check-circle" aria-hidden="true" style="color:green;display:none;position:absolute"></i>\
             <img src="' +
             data +
