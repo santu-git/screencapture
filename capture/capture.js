@@ -11,7 +11,6 @@
   var jcrop_api;
   var modal =
     '\
-  <div id="modal-div" style="width: 100%; display:block;top:10px;position:absolute;">\
     <div id="selectionDialog" style="width: 100%; display: none;top:100;position:absolute;z-index:9999;top:20px">\
       <div style="margin:auto;background-color: #ffffff; width:70%; border: 1px solid #cecece;">\
         <div style="background: aliceblue;"">\
@@ -96,10 +95,8 @@
               </div>\
             </div>\
           </div>\
-        </div>\
-      </div>';
+        </div>';
   $(document).ready(function () {
-
     $("head").append(
       '<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js" ></script>'
     );
@@ -136,34 +133,38 @@
         font-size: 2.3rem;\
         box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.4);\
       }\
+      #cp-overlay{\
+        opacity: 0.4;\
+        position: absolute;\
+        top: 0;\
+        left: 0;\
+        background-color: rgba(0, 0, 0,0.45);\
+        width: 100%;\
+        z-index: 5000;\
+        height:100vh;\
+      }\
+      .hide{\
+        display: none;\
+      }\
+      .show{\
+        display: block;\
+      }\
+      .disable-scroll{\
+        height: 100vh;\
+        overflow-y: hidden;\
+      }\
       </style>"
     );
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
-
-
 
     var captureButton = $("<button style='bottom:10px;'></button>")
       .html('<i class="fa fa-bug" aria-hidden="true"></i>')
       .attr("id", "capture-me")
       .attr("class", "btn btn-danger float-button");
 
-
     $("body").prepend(captureButton);
-    $("body").append("<div id='overlay'></div>");
+    $("body").append("<div id='cp-overlay' class='hide'></div>");
     $("body").append(modal);
-
-
-
-    $("#overlay")
-      .css({
-         'opacity' : 0.4,
-         'position': 'absolute',
-         'top': 0,
-         'left': 0,
-         'background-color': 'rgba(0, 0, 0,0.45)',
-         'width': '100%',
-         'z-index': 5000,         
-      });
     // document.getElementById(
     //   "capture-div-background-image"
     // ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/bitmap@2x.png)";
@@ -178,19 +179,15 @@
       "ticket-div-background-image"
     ).style.backgroundImage = "url(../assets/images-folder/group-27@3x.png)";
 
-
-
-
     $("#capture-me").click(function () {
       captureScreen();
+
       // $("body").css("background", "rgba(0, 0, 0,0.45)");
       // $("body").css("opacity", "0.8");
-
     });
 
     var content = document.getElementById("capture-image");
     var element = document.getElementById("formDialog");
-
 
     $(".capture-div").click(function () {
       if (content.style.display == "flex") content.style.display = "none";
@@ -200,23 +197,21 @@
       }
     });
 
-
     $(".ticket-div").click(function () {
-      if (element.style.display == "none"){
-       reportIssue();
-       content.style.display = "none";
-       }else  element.style.display = "none";
+      if (element.style.display == "none") {
+        reportIssue();
+        content.style.display = "none";
+      } else element.style.display = "none";
     });
 
-
     $(".close-capture-window").click(function () {
+      $("#cp-overlay").toggleClass("show", "hide");
+      $("body").toggleClass("disable-scroll", "");
       $("#selectionDialog").css("display", "none");
       $("#formDialog").css("display", "none");
       // $("body").css("background-color", "unset");
       // $("body").css("opacity", "unset");
     });
-
-
 
     $("#clear-captured").click(function () {
       localStorage.setItem("captured", JSON.stringify([]));
@@ -231,16 +226,12 @@
         });
     });
 
-
     $("#closeForm").click(function () {
       $("#issueTitle").val("");
       $("#issueDescription").val(""),
         $("#issueImageData").val(""),
         $("#issueImage").attr("src", "");
-
     });
-
-
   });
 
   function pushImage(img) {
@@ -266,6 +257,8 @@
   function captureScreen() {
     renderFromLocalstorage();
     html2canvas(document.body).then(function (canvas) {
+      $("#cp-overlay").toggleClass("show", "hide");
+      $("body").toggleClass("disable-scroll", "");
       var canvasUrl = canvas.toDataURL();
       $("#selectionDialog").css("display", "flex");
       $("#issueImage").attr("src", canvasUrl);
