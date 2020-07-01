@@ -47,14 +47,11 @@
                   <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex; max-width:48%;">\
                     <img id="img-4" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
                   </div>\
-                  <div class="img-thumb card col-sm-12 col-md-6" style="height:125px;overflow:hidden;display:flex;" max-width:48%;>\
-                    <img id="img-5" src="https://via.placeholder.com/400x170?text=No%20Image" style="height:100%;object-fit:contain"/>\
-                  </div>\
                 </div>\
               </div>\
               <div style="padding:10px; ">\
                 <p>Click+Drag on image to crop</p>\
-                <div style="overflow:auto; height: 400px; width: 515px; overflow-x: hidden;">\
+                <div style="overflow:auto; height: 320px; width: 515px; overflow-x: hidden;">\
                   <img id="issueImage" src="https://via.placeholder.com/400x170?text=No%20Image" width="500"/>\
                 </div>\
               </div>\
@@ -88,7 +85,7 @@
               </div>\
               <div style="padding:10px; width:45%;">\
                 <p>Click on image to select & attach to issue</p>\
-                <div style="overflow:auto; height: 400px; ">\
+                <div style="overflow:auto; height: 320px; ">\
                   <div id="captured-images" class="row" style="margin: unset;">\
                   </div>\
                 </div>\
@@ -276,7 +273,7 @@
     if (capturedImages === null) {
       capturedImages = [img];
     } else {
-      if (capturedImages.length == 5) {
+      if (capturedImages.length == 4) {
         capturedImages.pop();
       }
       capturedImages.unshift(img);
