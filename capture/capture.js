@@ -26,7 +26,7 @@
                 <div class ="capture-div" id="capture-div-background-image" style="font-size:16px; font-weight:bold; margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 16px; background-size: 100% 100%;">Capture Images </div>\
               </div>\
           </div>\
-          <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 42Spx; margin-right: 35px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+          <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 42px; margin-right: 35px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
             <div style="display:inline-flex;padding:10px;">\
               <div style="padding:10px;width: 362px">\
                 <div style="display:inline-flex;margin-bottom: 10px;"> \
@@ -156,7 +156,7 @@
       </style>"
     );
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
-    
+
 
     var captureButton = $("<button style='bottom:10px;'></button>")
       .html('<i class="fa fa-bug" aria-hidden="true"></i>')
