@@ -156,7 +156,7 @@
       </style>"
     );
     $("head").append('<script src="capture/jquery.Jcrop.min.js" ></script>');
-    $("head").append('<script src="capture/report.js" ></script>');
+    
 
     var captureButton = $("<button style='bottom:10px;'></button>")
       .html('<i class="fa fa-bug" aria-hidden="true"></i>')
@@ -166,6 +166,7 @@
     $("body").prepend(captureButton);
     $("body").append("<div id='cp-overlay' class='hide'></div>");
     $("body").append(modal);
+
     // document.getElementById(
     //   "capture-div-background-image"
     // ).style.backgroundImage = "url(../Scripts/ScreenCapture/assets/images-folder/bitmap@2x.png)";
@@ -228,6 +229,7 @@
       $("#issueDescription").val(""),
         $("#issueImageData").val(""),
         $("#issueImage").attr("src", "");
+
     });
 
     $("#submitIssue").click(function () {
