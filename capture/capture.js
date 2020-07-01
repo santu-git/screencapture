@@ -26,7 +26,7 @@
                 <div class ="capture-div" id="capture-div-background-image" style="font-size:16px; font-weight:bold; margin-left: 10px; background-repeat:no-repeat; cursor:pointer; padding: 16px; background-size: 100% 100%;">Capture Images </div>\
               </div>\
           </div>\
-          <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 42px; margin-right: 35px; border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset;" >\
+          <div class="inernal-modal" id ="capture-image" style=" display: flex; margin-left: 42px; margin-right: 35px; border: 1px solid #f2f2f2; border-radius: 0px 0px 4px 4px; border-top: unset; " >\
             <div style="display:inline-flex;padding:10px;">\
               <div style="padding:10px;width: 362px">\
                 <div style="display:inline-flex;margin-bottom: 10px;"> \
@@ -71,7 +71,7 @@
               </div>\
             </div>\
           </div>\
-          <div class="issue-ticket" id="formDialog" style="display:none; margin-right:35px; margin-left:42px;border: 1px solid #f2f2f2; border-radius: 4px; border-top: unset; padding: 10px;">\
+          <div class="issue-ticket" id="formDialog" style="display:none; margin-right:35px; margin-left:42px;border: 1px solid #f2f2f2;  border-top: unset; border-radius: 0px 0px 4px 4px; padding: 10px;">\
             <div style="display:inline-flex; width:100%;"> \
               <div style="padding:10px; width:55%;">\
                 <div class="form-group">\
