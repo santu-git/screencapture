@@ -201,8 +201,8 @@
         reportIssue();
         content.style.display = "none";
       } else {
-        element.style.display = "none";
         content.style.display = "flex";
+        element.style.display = "none";
       }
     });
 
@@ -299,6 +299,8 @@
     html2canvas(document.body).then(function (canvas) {
       $("#cp-overlay").toggleClass("show", "hide");
       $("body").toggleClass("disable-scroll", "");
+      $("#capture-image").css("display", "flex");
+      $("#formDialog").css("display", "none");
       var canvasUrl = canvas.toDataURL();
       $("#selectionDialog").css("display", "flex");
       $("#issueImage").attr("src", canvasUrl);
