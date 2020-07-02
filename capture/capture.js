@@ -186,7 +186,10 @@
     var element = document.getElementById("formDialog");
 
     $(".capture-div").click(function () {
-      if (content.style.display == "flex") content.style.display = "none";
+      if (content.style.display == "flex"){
+        content.style.display = "none";
+        reportIssue();
+      }
       else {
         content.style.display = "flex";
         element.style.display = "none";
@@ -197,7 +200,10 @@
       if (element.style.display == "none") {
         reportIssue();
         content.style.display = "none";
-      } else element.style.display = "none";
+      } else {
+        element.style.display = "none";
+        content.style.display = "flex";
+      }
     });
 
     $(".close-capture-window").click(function () {
